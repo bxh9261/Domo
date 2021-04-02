@@ -35,11 +35,11 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 app.use(session({
-    key: 'sessionid',
-    secret: 'Domo Arigato',
-    resave: true,
-    saveUninitialized: true
-}))
+  key: 'sessionid',
+  secret: 'Domo Arigato',
+  resave: true,
+  saveUninitialized: true,
+}));
 app.engine('handlebars', expressHandlebars({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 app.set('views', `${__dirname}/../views`);
