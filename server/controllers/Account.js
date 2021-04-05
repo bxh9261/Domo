@@ -3,11 +3,11 @@ const models = require('../models');
 const { Account } = models;
 
 const loginPage = (req, res) => {
-  res.render('login');
+  res.render('login', { csrfToken: req.csrfToken() });
 };
 
 const signupPage = (req, res) => {
-  res.render('signup');
+  res.render('signup', { csrfToken: req.csrfToken() });
 };
 
 const logout = (req, res) => {
@@ -65,21 +65,18 @@ const signup = (request, response) => {
 
     const newAccount = new Account.AccountModel(accountData);
 
-    const savePromise = newAccount.save();
-
-    savePromise.then(() => {
+    newAccount.save().then(() => {
+      // NEW FOR PART B
       req.session.account = Account.AccountModel.toAPI(newAccount);
-      res.json({ redirect: '/maker' });
-    });
-
-    savePromise.catch((err) => {
+      return res.json({ redirect: '/maker' });
+    }).catch((err) => {
       console.log(err);
 
       if (err.code === 11000) {
         return res.status(400).json({ error: 'Username already in use.' });
       }
 
-      return res.status(400).json({ error: 'An error occured' });
+      return res.status(400).json({ error: 'An error occurred' });
     });
   });
 };
