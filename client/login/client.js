@@ -105,7 +105,7 @@ const setup = (csrf) => {
     createLoginWindow(csrf); //default view
 };
 
-const getToken = () = {
+const getToken = () => {
     sendAjax('GET', '/getToken', null, (result) => {
         setup(result.csrfToken);
     });
