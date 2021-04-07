@@ -102,7 +102,7 @@ var setup = function setup(csrf) {
 
 var getToken = function getToken() {
   sendAjax('GET', "/getToken", null, function (result) {
-    setup(result.scrfToken);
+    setup(result.csrfToken);
   });
 };
 
