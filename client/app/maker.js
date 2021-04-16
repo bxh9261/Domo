@@ -70,6 +70,14 @@ const loadDomosFromServer = () => {
     });
 };
 
+const loadPublicDomosFromServer = () => {
+    sendAjax('GET', '/getPublicDomos', null, (data) => {
+        ReactDOM.render(
+            <DomoList domos={data.domos} />, document.querySelector("#domos")
+        );
+    });
+};
+
 const setup = function(csrf) {
     ReactDOM.render(
         <DomoForm csrf={csrf} />, document.querySelector("#makeDomo")
