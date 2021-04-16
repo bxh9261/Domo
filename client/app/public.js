@@ -1,20 +1,4 @@
-const handleDomo = (e) => {
-    e.preventDefault();
-    $("#domoMessage").animate({width:'hide'},350);
-    
-    if($("#domoName").val() == '' || $("#domoAge").val() == '' || $("#domoColor").val() == '') {
-        handleError("RAWR! All fields are required!");
-        return false;
-    }
-    
-    sendAjax('POST', $("#domoForm").attr("action"), $("#domoForm").serialize(), function() {
-        loadDomosFromServer();
-    });
-    
-    return false;
-};
-
-const DomoList = function(props) {
+const PublicDomoList = function(props) {
     if(props.domos.length === 0){
         return (
             <div className="domoList">
@@ -40,28 +24,28 @@ const DomoList = function(props) {
     );
 };
 
-const loadDomosFromServer = () => {
+const loadPublicDomosFromServer = () => {
     sendAjax('GET', '/getPublicDomos', null, (data) => {
         ReactDOM.render(
-            <DomoList domos={data.domos} />, document.querySelector("#domos")
+            <PublicDomoList domos={data.domos} />, document.querySelector("#domos")
         );
     });
 };
 
-const setup = function(csrf) {
+const publicSetup = function(csrf) {
     ReactDOM.render(
-        <DomoList domos={[]} />, document.querySelector("#domos")
+        <PublicDomoList domos={[]} />, document.querySelector("#domos")
     );
     
-    loadDomosFromServer();
+    loadPublicDomosFromServer();
 };
 
-const getToken = () => {
+const getPublicToken = () => {
     sendAjax('GET', "/getToken", null, (result) => {
        setup(result.csrfToken); 
     });
 };
 
 $(document).ready(function() {
-   getToken(); 
+   getPublicToken(); 
 });

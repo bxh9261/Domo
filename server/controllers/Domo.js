@@ -13,7 +13,7 @@ const makerPage = (req, res) => {
 };
 
 const publicPage = (req, res) => {
-  Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+  Domo.DomoModel.findAllPublic(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
@@ -65,9 +65,10 @@ const getDomos = (request, response) => {
 };
 
 const getPublicDomos = (request, response) => {
+  const req = request;
   const res = response;
 
-  return Domo.DomoModel.findAllPublic((err, docs) => {
+  return Domo.DomoModel.findAllPublic(req.session.account._id, (err, docs) => {
     if (err) {
       console.log(err);
       return res.status(400).json({ error: 'An error occured' });
@@ -78,6 +79,6 @@ const getPublicDomos = (request, response) => {
 
 module.exports.makerPage = makerPage;
 module.exports.getDomos = getDomos;
-module.exports.getDomos = getPublicDomos;
+module.exports.getPublicDomos = getPublicDomos;
 module.exports.make = makeDomo;
 module.exports.publicPage = publicPage;

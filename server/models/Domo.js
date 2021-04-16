@@ -58,9 +58,9 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
     owner: convertId(ownerId),
   };
   return DomoModel.find(search).select('name age color isPublic').lean().exec(callback);
-};
+}; 
 
-DomoSchema.statics.findAllPublic = (callback) => {
+DomoSchema.statics.findAllPublic = (ownerId, callback) => {
   const pub = true;
   return DomoModel.find({ isPublic: pub }).lean().exec(callback);
 };
