@@ -161,17 +161,17 @@ var DomoList = function DomoList(props) {
 
 var loadDomosFromServer = function loadDomosFromServer() {
   sendAjax('GET', '/getPublicDomos', null, function (data) {
-    ReactDOM.render( /*#__PURE__*/React.createElement(PublicDomoList, {
+    ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
       domos: data.domos
     }), document.querySelector("#domos"));
   });
 };
 
 var setup = function setup(csrf) {
-  ReactDOM.render( /*#__PURE__*/React.createElement(PublicDomoList, {
+  ReactDOM.render( /*#__PURE__*/React.createElement(DomoList, {
     domos: []
   }), document.querySelector("#domos"));
-  loadPublicDomosFromServer();
+  loadDomosFromServer();
 };
 
 var getToken = function getToken() {
@@ -181,7 +181,7 @@ var getToken = function getToken() {
 };
 
 $(document).ready(function () {
-  getPublicToken();
+  getToken();
 });
 "use strict";
 

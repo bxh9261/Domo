@@ -27,17 +27,17 @@ const DomoList = function(props) {
 const loadDomosFromServer = () => {
     sendAjax('GET', '/getPublicDomos', null, (data) => {
         ReactDOM.render(
-            <PublicDomoList domos={data.domos} />, document.querySelector("#domos")
+            <DomoList domos={data.domos} />, document.querySelector("#domos")
         );
     });
 };
 
 const setup = function(csrf) {
     ReactDOM.render(
-        <PublicDomoList domos={[]} />, document.querySelector("#domos")
+        <DomoList domos={[]} />, document.querySelector("#domos")
     );
     
-    loadPublicDomosFromServer();
+    loadDomosFromServer();
 };
 
 const getToken = () => {
@@ -47,5 +47,5 @@ const getToken = () => {
 };
 
 $(document).ready(function() {
-   getPublicToken(); 
+   getToken(); 
 });
