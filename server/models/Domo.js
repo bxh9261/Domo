@@ -62,7 +62,7 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
 
 DomoSchema.statics.findAllPublic = (ownerId, callback) => {
   const pub = true;
-  return DomoModel.find({ isPublic: pub }).lean().exec(callback);
+  return DomoModel.find({ isPublic: pub }).lean().exec();
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);

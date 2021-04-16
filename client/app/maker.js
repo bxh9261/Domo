@@ -52,6 +52,7 @@ const DomoList = function(props) {
                 <h3 className="domoName">Name: {domo.name}</h3>
                 <h3 className="domoAge">Age: {domo.age}</h3>
                 <h3 className="domoColor">Favroite Color: {domo.color}</h3>
+                <h3 className="domoIsPublic" style="display: none;">{domo.isPublic}</h3>
             </div>
         );
     });
@@ -64,14 +65,6 @@ const DomoList = function(props) {
 
 const loadDomosFromServer = () => {
     sendAjax('GET', '/getDomos', null, (data) => {
-        ReactDOM.render(
-            <DomoList domos={data.domos} />, document.querySelector("#domos")
-        );
-    });
-};
-
-const loadPublicDomosFromServer = () => {
-    sendAjax('GET', '/getPublicDomos', null, (data) => {
         ReactDOM.render(
             <DomoList domos={data.domos} />, document.querySelector("#domos")
         );
