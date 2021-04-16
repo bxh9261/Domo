@@ -14,28 +14,6 @@ const handleDomo = (e) => {
     return false;
 };
 
-const DomoForm = (props) => {
-    return(
-    <form id="domoForm" name="domoForm"
-          onSubmit={handleDomo}
-          action="/maker"
-          method="POST"
-          className="domoForm"
-    >
-    <label htmlFor="name">Name: </label>
-    <input id="domoName" type="text" name="name" placeholder="Domo Name"/>
-    <label htmlFor="age"> Age: </label>
-    <input id="domoAge" type="text" name="age" placeholder="Domo Age"/>
-    <label htmlFor="color"> Favorite Color: </label>
-    <input id="domoColor" type="text" name="color" placeholder="Favorite Color"/>
-    <label htmlFor="isPublic"> Is Public? </label>
-    <input id="domoIsPublic" type="checkbox" name="isPublic"/>
-    <input type="hidden" name="_csrf" value={props.csrf} />
-    <input className="makeDomoSubmit" type="submit" value="Make Domo" />
-    </form>
-    );
-};
-
 const DomoList = function(props) {
     if(props.domos.length === 0){
         return (
@@ -63,7 +41,7 @@ const DomoList = function(props) {
 };
 
 const loadDomosFromServer = () => {
-    sendAjax('GET', '/getDomos', null, (data) => {
+    sendAjax('GET', '/getPublicDomos', null, (data) => {
         ReactDOM.render(
             <DomoList domos={data.domos} />, document.querySelector("#domos")
         );
@@ -71,10 +49,6 @@ const loadDomosFromServer = () => {
 };
 
 const setup = function(csrf) {
-    ReactDOM.render(
-        <DomoForm csrf={csrf} />, document.querySelector("#makeDomo")
-    );
-    
     ReactDOM.render(
         <DomoList domos={[]} />, document.querySelector("#domos")
     );

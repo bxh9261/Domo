@@ -12,6 +12,16 @@ const makerPage = (req, res) => {
   });
 };
 
+const publicPage = (req, res) => {
+  Domo.DomoModel.findByOwner(req.session.account._id, (err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occured' });
+    }
+    return res.render('public', { csrfToken: req.csrfToken(), domos: docs });
+  });
+};
+
 const makeDomo = (req, res) => {
   if (!req.body.name || !req.body.age || !req.body.color) {
     return res.status(400).json({ error: 'RAWR! All fields are required!' });
@@ -22,6 +32,7 @@ const makeDomo = (req, res) => {
     age: req.body.age,
     color: req.body.color,
     owner: req.session.account._id,
+    public: req.body.isPublic,
   };
 
   const newDomo = new Domo.DomoModel(domoData);
@@ -53,6 +64,20 @@ const getDomos = (request, response) => {
   });
 };
 
+const getPublicDomos = (request, response) => {
+  const res = response;
+
+  return Domo.DomoModel.findAllPublic((err, docs) => {
+    if (err) {
+      console.log(err);
+      return res.status(400).json({ error: 'An error occured' });
+    }
+    return res.json({ domos: docs });
+  });
+};
+
 module.exports.makerPage = makerPage;
 module.exports.getDomos = getDomos;
+module.exports.getDomos = getPublicDomos;
 module.exports.make = makeDomo;
+module.exports.publicPage = publicPage;
