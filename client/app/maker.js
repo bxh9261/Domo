@@ -52,7 +52,7 @@ const DomoList = function(props) {
                 <h3 className="domoName">Name: {domo.name}</h3>
                 <h3 className="domoAge">Age: {domo.age}</h3>
                 <h3 className="domoColor">Favroite Color: {domo.color}</h3>
-                <h3 className="domoIsPublic" style="display: none;">{domo.isPublic}</h3>
+                <h3 className="domoIsPublic"> Is public? {domo.isPublic}</h3>
             </div>
         );
     });

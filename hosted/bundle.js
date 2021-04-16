@@ -89,9 +89,8 @@ var DomoList = function DomoList(props) {
       }, "Age: ", domo.age), /*#__PURE__*/React.createElement("h3", {
         className: "domoColor"
       }, "Favroite Color: ", domo.color), /*#__PURE__*/React.createElement("h3", {
-        className: "domoIsPublic",
-        style: "display: none;"
-      }, domo.isPublic))
+        className: "domoIsPublic"
+      }, " Is public? ", domo.isPublic))
     );
   });
   return (/*#__PURE__*/React.createElement("div", {
