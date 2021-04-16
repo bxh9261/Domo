@@ -1,4 +1,4 @@
-const PublicDomoList = function(props) {
+const DomoList = function(props) {
     if(props.domos.length === 0){
         return (
             <div className="domoList">
@@ -24,7 +24,7 @@ const PublicDomoList = function(props) {
     );
 };
 
-const loadPublicDomosFromServer = () => {
+const loadDomosFromServer = () => {
     sendAjax('GET', '/getPublicDomos', null, (data) => {
         ReactDOM.render(
             <PublicDomoList domos={data.domos} />, document.querySelector("#domos")
@@ -32,7 +32,7 @@ const loadPublicDomosFromServer = () => {
     });
 };
 
-const publicSetup = function(csrf) {
+const setup = function(csrf) {
     ReactDOM.render(
         <PublicDomoList domos={[]} />, document.querySelector("#domos")
     );
@@ -40,7 +40,7 @@ const publicSetup = function(csrf) {
     loadPublicDomosFromServer();
 };
 
-const getPublicToken = () => {
+const getToken = () => {
     sendAjax('GET', "/getToken", null, (result) => {
        setup(result.csrfToken); 
     });
