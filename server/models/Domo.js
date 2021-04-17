@@ -40,9 +40,8 @@ const DomoSchema = new mongoose.Schema({
     default: Date.now,
   },
   isPublic: {
-    type: Boolean,
-    default: false,
-    required: true,
+    type: String,
+    default: ""
   },
 
 });
@@ -61,8 +60,8 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
 };
 
 DomoSchema.statics.findAllPublic = (ownerId, callback) => {
-  const pub = true;
-  return DomoModel.find({ isPublic: pub }).lean().exec();
+  const pub = "public";
+  return DomoModel.find({ isPublic: "public" }).lean().exec();
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);
