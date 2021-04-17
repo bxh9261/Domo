@@ -51,7 +51,8 @@ var DomoForm = function DomoForm(props) {
     }, " Is Public? "), /*#__PURE__*/React.createElement("input", {
       id: "domoIsPublic",
       type: "checkbox",
-      name: "isPublic"
+      name: "isPublic",
+      value: "public"
     }), /*#__PURE__*/React.createElement("input", {
       type: "hidden",
       name: "_csrf",
@@ -90,7 +91,7 @@ var DomoList = function DomoList(props) {
         className: "domoColor"
       }, "Favroite Color: ", domo.color), /*#__PURE__*/React.createElement("h3", {
         className: "domoIsPublic"
-      }, " Is public? ", domo.isPublic))
+      }, domo.isPublic))
     );
   });
   return (/*#__PURE__*/React.createElement("div", {
