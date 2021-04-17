@@ -41,7 +41,7 @@ const DomoSchema = new mongoose.Schema({
   },
   isPublic: {
     type: String,
-    default: ""
+    default: '',
   },
 
 });
@@ -50,7 +50,7 @@ DomoSchema.statics.toAPI = (doc) => ({
   name: doc.name,
   age: doc.age,
   color: doc.color,
-  isPublic: doc.isPublic
+  isPublic: doc.isPublic,
 });
 
 DomoSchema.statics.findByOwner = (ownerId, callback) => {
@@ -61,8 +61,8 @@ DomoSchema.statics.findByOwner = (ownerId, callback) => {
 };
 
 DomoSchema.statics.findAllPublic = (ownerId, callback) => {
-  const pub = "public";
-  return DomoModel.find({ isPublic: "public" }).lean().exec(callback);
+  const pub = 'public';
+  return DomoModel.find({ isPublic: pub }).lean().exec(callback);
 };
 
 DomoModel = mongoose.model('Domo', DomoSchema);
