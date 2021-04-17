@@ -32,7 +32,7 @@ const makeDomo = (req, res) => {
     age: req.body.age,
     color: req.body.color,
     owner: req.session.account._id,
-    public: req.body.isPublic,
+    isPublic: req.body.isPublic,
   };
 
   const newDomo = new Domo.DomoModel(domoData);
